@@ -11,17 +11,23 @@ public class PlayerSpriteSpawner : MonoBehaviour
 
     GameObject currentPlayer;
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(int playerSpriteIndex)
     {
         if (FindObjectOfType<PlayerState>().isCrewMate)
-            StartGameCrewmate();
+            StartGameCrewmate(playerSpriteIndex);
         else
             StartGameImposter();
     }
 
-    public void StartGameCrewmate()
+    public void StartGameCrewmate(int playerSpriteIndex)
     {
-        currentPlayer = Instantiate(playersPrefabList[Random.Range(0, playersPrefabList.Count)], this.transform);
+        int arrayIndex = playerSpriteIndex;
+        if (playerSpriteIndex >= playersPrefabList.Count)
+        {
+            arrayIndex = playerSpriteIndex - (playerSpriteIndex / playersPrefabList.Count) * playersPrefabList.Count;
+        }
+
+        currentPlayer = Instantiate(playersPrefabList[arrayIndex], this.transform);
     }
 
     void StartGameImposter()

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameConnectionUIManager : MonoBehaviour
 {
     [SerializeField] GameObject serverConnectingText;
     [SerializeField] GameObject serverConnectedText;
-    [SerializeField] GameObject findMatchButton;
+    [SerializeField] GameObject findMatchPanel;
     [SerializeField] GameObject CancelMatchButton;
     [SerializeField] GameObject findingMatchText;
     [SerializeField] GameObject isHostGameObject;
-    [SerializeField] Text playerCountText;
-    [SerializeField] InputField nameInputField;
+    [SerializeField] TextMeshProUGUI playerCountText;
+    [SerializeField] TMP_InputField nameInputField;
 
     [Header("In Game Panel")]
     [SerializeField] GameObject inGameUIPanel;
@@ -27,7 +28,7 @@ public class GameConnectionUIManager : MonoBehaviour
         serverConnectingText.SetActive(true);
 
         serverConnectedText.SetActive(false);
-        findMatchButton.SetActive(false);
+        findMatchPanel.SetActive(false);
         CancelMatchButton.SetActive(false);
         playerCountText.gameObject.SetActive(false);
         findingMatchText.SetActive(false);
@@ -39,7 +40,7 @@ public class GameConnectionUIManager : MonoBehaviour
     public void ResetUI()
     {
         serverConnectedText.SetActive(true);
-        findMatchButton.SetActive(true);
+        findMatchPanel.SetActive(true);
         nameInputField.gameObject.SetActive(true);
 
         CancelMatchButton.SetActive(false);
@@ -77,13 +78,13 @@ public class GameConnectionUIManager : MonoBehaviour
         serverConnectedText.SetActive(true);
         isHostGameObject.SetActive(false);
 
-        findMatchButton.SetActive(true);
+        findMatchPanel.SetActive(true);
         nameInputField.gameObject.SetActive(true);
     }
 
     public void ActivateFindingMatchUI()
     {
-        findMatchButton.SetActive(false);
+        findMatchPanel.SetActive(false);
         nameInputField.gameObject.SetActive(false);
 
         isHostGameObject.SetActive(false);
@@ -94,7 +95,7 @@ public class GameConnectionUIManager : MonoBehaviour
 
     void ActivateCancelMatchMaking()
     {
-        findMatchButton.SetActive(true);
+        findMatchPanel.SetActive(true);
         nameInputField.gameObject.SetActive(true);
 
         isHostGameObject.SetActive(false);

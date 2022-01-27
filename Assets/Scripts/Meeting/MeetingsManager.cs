@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MeetingsManager : MonoBehaviour
 {
     [SerializeField] GameObject meetingsPanel;
     [SerializeField] GameObject meetingsPanelLeft;
     [SerializeField] GameObject meetingsPanelRight;
-    [SerializeField] Text meetingCounterText;
+    [SerializeField] TextMeshProUGUI meetingCounterText;
 
     [SerializeField] GameObject meetingButton;
     [SerializeField] GameObject callMeetingButton;

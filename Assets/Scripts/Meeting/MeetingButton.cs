@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MeetingButton : MonoBehaviour
 {
-    [SerializeField] Text buttonNameText;
-    [SerializeField] Text voteCounterText;
+    [SerializeField] TextMeshProUGUI buttonNameText;
+    [SerializeField] TextMeshProUGUI voteCounterText;
 
     public string UserID;
 

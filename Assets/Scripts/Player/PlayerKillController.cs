@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerKillController : MonoBehaviour
 {
     //The UI button with the Overlay color
     Button KillButton;
     Image KillButtonImage;
-    Text KillButtonCoolDownText;
 
     float KillCoolDown = 5;
     bool canKill = true;
@@ -21,12 +21,10 @@ public class PlayerKillController : MonoBehaviour
         GameObject killButton = FindObjectOfType<InGameUIController>().imposterKillButton;
         KillButton = killButton.GetComponent<Button>();
         KillButtonImage = killButton.GetComponent<Image>();
-        KillButtonCoolDownText = killButton.GetComponentInChildren<Text>();
         KillButton.onClick.AddListener(() => Kill());
 
         idKillList = new List<string>();
 
-        KillButtonCoolDownText.text = "";
         KillButtonImage.fillAmount = 1;
     }
 
@@ -41,7 +39,6 @@ public class PlayerKillController : MonoBehaviour
         if (idKillList.Count > 0)
             KillButton.interactable = true;
 
-        KillButtonCoolDownText.text = "";
         KillButtonImage.fillAmount = 1;
     }
 
@@ -50,7 +47,6 @@ public class PlayerKillController : MonoBehaviour
         //Reset the Variables
         canKill = false;
         KillButton.interactable = false;
-        KillButtonCoolDownText.text = "" + KillCoolDown;
         KillButtonImage.fillAmount = 0;
 
         //Start the Timer
@@ -61,7 +57,6 @@ public class PlayerKillController : MonoBehaviour
             TimeLeft--;
 
             //Change the Time Text and the Image Fill Amount
-            KillButtonCoolDownText.text = "" + TimeLeft;
             KillButtonImage.fillAmount = 1 - TimeLeft / KillCoolDown;
         }
 
@@ -69,7 +64,6 @@ public class PlayerKillController : MonoBehaviour
             KillButton.interactable = true;
 
         //Set variables for the next kill
-        KillButtonCoolDownText.text = "";
         KillButtonImage.fillAmount = 1;
         canKill = true;
     }
@@ -89,6 +83,13 @@ public class PlayerKillController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            if (canKill && KillButton.interactable)
+                Kill();
+    }
+
     #region Triggers
 
     //Called when a player enter the player collider
@@ -100,7 +101,10 @@ public class PlayerKillController : MonoBehaviour
         killableID = ID;
         //if the cooldown is 0
         if (canKill)
+        {
             KillButton.interactable = true;
+            KillButton.GetComponent<Animator>().SetBool("Kill", true);
+        }
     }
 
     //Called when a player exit the player collider
@@ -110,6 +114,7 @@ public class PlayerKillController : MonoBehaviour
             idKillList.Remove(ID);
 
         KillButton.interactable = false;
+        KillButton.GetComponent<Animator>().SetBool("Kill", false);
     }
 
     #endregion

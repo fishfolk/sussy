@@ -17,10 +17,10 @@ public class PlayerServerController : MonoBehaviour
     bool isDead = false;
 
 
-    public void Initiate(string Id, Vector3 pos)
+    public void Initiate(string Id, Vector3 pos, int playerSpriteIndex)
     {
         this.Id = Id;
-        GetComponent<PlayerSpriteSpawner>().StartGameCrewmate();
+        GetComponent<PlayerSpriteSpawner>().StartGameCrewmate(playerSpriteIndex);
         rigidbody2D = GetComponentInChildren<Rigidbody2D>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerMovement.StartPlayer();

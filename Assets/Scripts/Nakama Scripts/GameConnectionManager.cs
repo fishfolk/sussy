@@ -25,7 +25,12 @@ public class GameConnectionManager : MonoBehaviour
     [SerializeField] public string localUserSessionID;
     private IMatch currentMatch;
 
-    public int minPlayers = 3;
+    int minPlayers = 3;
+    public void SetPlayerCount(int count) //Called from UI
+    {
+        minPlayers = count;
+        maxPlayers = count;
+    }
     int maxPlayers;
     int playerCount = 0;
 
@@ -106,6 +111,7 @@ public class GameConnectionManager : MonoBehaviour
     /// <param name="matched">The MatchmakerMatched data.</param>
     private async void OnReceivedMatchmakerMatched(IMatchmakerMatched matched)
     {
+
         // Cache a reference to the local user.
         localUser = matched.Self.Presence;
         localUserSessionID = localUser.SessionId;

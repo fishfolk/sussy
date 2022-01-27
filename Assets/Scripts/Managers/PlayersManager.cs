@@ -29,6 +29,8 @@ public class PlayersManager : MonoBehaviour
     #region Spawning
     public void SpawnPlayers()
     {
+        int playerSpriteIndex = 0;
+
         if (!isSpawned)
         {
             List<string> playersSessionIDs = gameConnectionManager.playersSessionIDs;
@@ -39,10 +41,11 @@ public class PlayersManager : MonoBehaviour
                 GameObject player = null;
 
                 if (id == localUserSessionID)
-                    player = InstantiatePlayer(id);
+                    player = InstantiatePlayer(id, playerSpriteIndex);
                 else
-                    player = InstantiateServerPlayer(id);
+                    player = InstantiateServerPlayer(id, playerSpriteIndex);
 
+                playerSpriteIndex++;
                 playersDictionary.Add(id, player);
 
                 spwanPositionsListIndex++;
@@ -54,23 +57,23 @@ public class PlayersManager : MonoBehaviour
     }
 
     //Create the main Player
-    public GameObject InstantiatePlayer(string id)
+    public GameObject InstantiatePlayer(string id, int playerSpriteIndex)
     {
         GameObject p = Instantiate(player, Vector3.zero, Quaternion.identity);
 
         PlayerController playerController = p.GetComponent<PlayerController>();
-        playerController.Initiate(id, spwanPositionsList[spwanPositionsListIndex]);
+        playerController.Initiate(id, spwanPositionsList[spwanPositionsListIndex], playerSpriteIndex);
 
         return p;
     }
 
     //Create the Server Players
-    public GameObject InstantiateServerPlayer(string id)
+    public GameObject InstantiateServerPlayer(string id, int playerSpriteIndex)
     {
         GameObject p = Instantiate(serverPlayer, Vector3.zero, Quaternion.identity);
 
         PlayerServerController playerController = p.GetComponent<PlayerServerController>();
-        playerController.Initiate(id, spwanPositionsList[spwanPositionsListIndex]);
+        playerController.Initiate(id, spwanPositionsList[spwanPositionsListIndex], playerSpriteIndex);
 
         return p;
     }

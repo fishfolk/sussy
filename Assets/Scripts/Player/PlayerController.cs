@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour
         playerControlsManager = GetComponent<PlayerControlsManager>();
     }
 
-    public void Initiate(string Id, Vector3 pos)
+    public void Initiate(string Id, Vector3 pos, int playerSpriteIndex)
     {
         this.Id = Id;
-        GetComponent<PlayerSpriteSpawner>().SpawnPlayer();
+        GetComponent<PlayerSpriteSpawner>().SpawnPlayer(playerSpriteIndex);
         GetComponentInChildren<PlayerMovement>().StartPlayer();
         rigidbody2D = GetComponentInChildren<Rigidbody2D>();
 
