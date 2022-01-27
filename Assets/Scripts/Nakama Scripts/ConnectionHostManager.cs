@@ -167,7 +167,7 @@ public class ConnectionHostManager : MonoBehaviour
     List<int> coinsIDList;
     int currentCoinListIndex = 0;
 
-    int CoinsToSpawn = 2;
+    int CoinsToSpawn = 5;
 
     public void SpawnCoins()
     {
@@ -266,8 +266,16 @@ public class ConnectionHostManager : MonoBehaviour
             }
             FindObjectOfType<PlayersManager>().ActivatePlayers();
             KillTask(KillID);
+            gameConnectionManager.ShowMeetingResult(KillID);
         }
+        else
+            gameConnectionManager.ShowMeetingResult("");
 
+        Invoke("EndMeeting", 3);
+    }
+
+    void EndMeeting()
+    {
         gameConnectionManager.EndMeeting();
     }
 

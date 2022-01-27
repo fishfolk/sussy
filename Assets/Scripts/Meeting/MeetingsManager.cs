@@ -14,6 +14,10 @@ public class MeetingsManager : MonoBehaviour
     [SerializeField] GameObject meetingButton;
     [SerializeField] GameObject callMeetingButton;
 
+    [SerializeField] GameObject meetingResultPanel;
+    [SerializeField] TextMeshProUGUI meetingResultPanelName;
+
+
     [SerializeField] public int counter = 60;
 
     PlayersManager playersManager;
@@ -65,6 +69,7 @@ public class MeetingsManager : MonoBehaviour
         }
         playersManager.ActivatePlayers();
         meetingsPanel.SetActive(false);
+        meetingResultPanel.SetActive(false);
     }
 
     IEnumerator CountDown()
@@ -114,5 +119,11 @@ public class MeetingsManager : MonoBehaviour
         }
 
         meetingsPanel.SetActive(false);
+    }
+    public void ShowMeetingResult(string KillID)
+    {
+        meetingsPanel.SetActive(false);
+        meetingResultPanel.SetActive(true);
+        meetingResultPanelName.text = FindObjectOfType<PlayersManager>().GetPlayerName(KillID);
     }
 }

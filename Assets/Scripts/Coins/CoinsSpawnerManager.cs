@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CoinsSpawnerManager : MonoBehaviour
 {
-    [SerializeField] GameObject coinPrefab;
+    [SerializeField] List<GameObject> itemsPrefab;
     public List<Transform> spawnPoints;
 
     public void SpawnCoin(int id)
     {
-        Coin c = Instantiate(coinPrefab, spawnPoints[id].position, Quaternion.identity).GetComponent<Coin>();
+        Coin c = Instantiate(itemsPrefab[Random.Range(0, itemsPrefab.Count)], spawnPoints[id].position, Quaternion.identity).GetComponentInChildren<Coin>();
         c.ID = id;
+
+        ExplosionsSpawner.Instance.Spawn(ExplosionsType.big, spawnPoints[id].position);
     }
 
     public void RemoveCoin(int id)
@@ -18,7 +20,10 @@ public class CoinsSpawnerManager : MonoBehaviour
         foreach (var v in FindObjectsOfType<Coin>())
         {
             if (v.ID == id)
+            {
                 v.RemoveCoin();
+                ExplosionsSpawner.Instance.Spawn(ExplosionsType.small, v.transform.position);
+            }
         }
     }
 

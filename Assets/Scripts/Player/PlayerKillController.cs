@@ -80,6 +80,9 @@ public class PlayerKillController : MonoBehaviour
             StartCoroutine(ResetKill());
 
             idKillList.Remove(idKillList[0]);
+
+            AudioController.Instance.PlaySFX(Clips.Kill);
+            KillButton.GetComponent<Animator>().SetBool("Kill", false);
         }
     }
 

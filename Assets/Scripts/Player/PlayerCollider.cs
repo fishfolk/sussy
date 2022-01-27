@@ -38,6 +38,7 @@ public class PlayerCollider : MonoBehaviour
             if (other.gameObject.tag == "Coin")
             {
                 other.GetComponent<Coin>().CollectCoin();
+                AudioController.Instance.PlaySFX(Clips.PickUp);
             }
             if (other.gameObject.tag == "CallMeeting")
             {

@@ -46,5 +46,6 @@ public class ExplosionsSpawner : MonoBehaviour
         }
 
         Instantiate(explosionObject, pos, Quaternion.identity);
+        AudioController.Instance.PlaySFX(Clips.Explosion);
     }
 }

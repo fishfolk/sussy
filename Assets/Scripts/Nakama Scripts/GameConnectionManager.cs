@@ -297,6 +297,10 @@ public class GameConnectionManager : MonoBehaviour
             case OpCodes.EndMeeting:
                 meetingsManager.EndMeeting();
                 break;
+
+            case OpCodes.ShowMeetingResult:
+                meetingsManager.ShowMeetingResult(state["userSessionID"]);
+                break;
         }
     }
 
@@ -417,6 +421,14 @@ public class GameConnectionManager : MonoBehaviour
     {
         meetingsManager.EndMeeting();
         SendMatchState(OpCodes.EndMeeting, "");
+    }
+
+    public void ShowMeetingResult(string ID)
+    {
+        meetingsManager.ShowMeetingResult(ID);
+
+        string jsonState = MatchDataJson.SetUserID(ID);
+        SendMatchState(OpCodes.ShowMeetingResult, jsonState);
     }
 
     #endregion

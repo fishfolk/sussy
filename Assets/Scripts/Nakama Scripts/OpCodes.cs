@@ -35,5 +35,6 @@ public class OpCodes
     public const long StartMeeting = 15;
     public const long VotePlayer = 16;
     public const long EndMeeting = 17;
+    public const long ShowMeetingResult = 18;
 
 }
