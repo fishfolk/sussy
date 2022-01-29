@@ -2,40 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class LocalPlayerMovement : MonoBehaviour
 {
-    //Player Classes and Components
-    PlayerAnimator playerAnimator;
-    SpriteRenderer playerSpriteRenderer;
-    Rigidbody2D rigidBody2D;
+    //Important so we can get the correct Controls
+    int id;
+    public void SetID(int id) { this.id = id; }
 
-    public void StartPlayer()
-    {
-        playerAnimator = GetComponent<PlayerAnimator>();
-        playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rigidBody2D = GetComponent<Rigidbody2D>();
-        // playerAudioController = GetComponent<PlayerAudioController>();
-
-        MovePlayer();
-    }
-
-    #region Movement
-    [SerializeField] float Speed = 5f;
+    [SerializeField] public float Speed = 7.5f;
     float currentSpeed = 0;
 
+    ControlsManager controlsManager;
     bool CanMove = false;
-    bool isMoving = false;
+    bool isMoving;
+    SpriteRenderer playerSpriteRenderer;
+    Rigidbody2D rigidBody2D;
+    PlayerAnimator playerAnimator;
 
-    public void FixedUpdateMovement(float inputHor, float inputVer)
+    void Start()
+    {
+        //get the ControlManager in the scene
+        playerAnimator = GetComponent<PlayerAnimator>();
+        controlsManager = FindObjectOfType<ControlsManager>();
+        playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
     {
         if (CanMove)
         {
-            ChangeSpeed(inputHor, inputVer);
+            float inputHor = 0;
+            float inputVer = 0;
 
-            rigidBody2D.velocity = new Vector2(inputHor * currentSpeed, inputVer * currentSpeed);
+            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.UpKey)))
+                inputVer += 1;
 
-            UpdatePlayerCompnments(inputHor, inputVer);
+            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.DownKey)))
+                inputVer -= 1;
+
+            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.LeftKey)))
+                inputHor -= 1;
+
+            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.RightKey)))
+                inputHor += 1;
+
+            FixedUpdateMovement(inputHor, inputVer);
         }
+    }
+
+    void FixedUpdateMovement(float inputHor, float inputVer)
+    {
+        ChangeSpeed(inputHor, inputVer);
+
+        rigidBody2D.velocity = new Vector2(inputHor * currentSpeed, inputVer * currentSpeed);
+
+        UpdatePlayerCompnments(inputHor, inputVer);
     }
 
     public void UpdatePlayerCompnments(float inputHor, float inputVer)
@@ -44,13 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
         isMoving = inputHor != 0 || inputVer != 0;
         if (isMoving)
-        {
             playerAnimator.MovePlayer();
-        }
         else
-        {
             playerAnimator.StopPlayer();
-        }
     }
 
     void FlipSprite(float inputDirection)
@@ -83,8 +100,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    #endregion
 
     #region Change Player Properties
     public void MovePlayer()
