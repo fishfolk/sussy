@@ -19,6 +19,7 @@ public class LocalPlayerController : MonoBehaviour
     LocalPlayerMovement localPlayerMovement;
     ControlsManager controlsManager;
     LocalPlayerKillController localPlayerKillController;
+    LocalPlayerInventory localPlayerInventory;
 
     public bool isImposter = false;
 
@@ -33,6 +34,7 @@ public class LocalPlayerController : MonoBehaviour
         localPlayerMovement = GetComponent<LocalPlayerMovement>();
         controlsManager = FindObjectOfType<ControlsManager>();
         localPlayerKillController = GetComponent<LocalPlayerKillController>();
+        localPlayerInventory = GetComponent<LocalPlayerInventory>();
 
         localPlayerMovement.SetID(id);
         weaponsCountText.text = currentWeapons.ToString();
@@ -55,11 +57,14 @@ public class LocalPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isImposter)
-            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.ActionKey)))
-            {
+        if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.ActionKey)))
+        {
+            if (isImposter)
                 localPlayerKillController.Kill();
-            }
+
+            if (!isImposter)
+                localPlayerInventory.PlantMine();
+        }
     }
 
     public void Kill()
@@ -72,18 +77,42 @@ public class LocalPlayerController : MonoBehaviour
         GetComponentInChildren<PlayerAnimator>().PlayerDead();
     }
 
+    public void Stun()
+    {
+        localPlayerMovement.StopPlayer();
+        isImposter = false;
+
+        GetComponentInChildren<PlayerAnimator>().PlayerDead();
+        ExplosionsSpawner.Instance.Spawn(ExplosionsType.big, transform.position);
+        Invoke("ReleaseStun", 5);
+    }
+
+    public void ReleaseStun()
+    {
+        localPlayerMovement.MovePlayer();
+        isImposter = true;
+
+        GetComponentInChildren<PlayerAnimator>().ReleaseStun();
+    }
+
     public void SetIsImposter()
     {
         statePanelController.SetImposter();
         isImposter = true;
         localPlayerMovement.Speed = 10;
 
-        localPlayerKillController.KillButton.SetActive(true);
+        localPlayerKillController.StartImposter();
+
+        localPlayerInventory.MineButton.SetActive(false);
+
+        playerName.color = Color.red;
     }
 
     public void SetIsCrewMate()
     {
         statePanelController.SetCrewmate();
+
+        localPlayerInventory.StartCrewMate();
 
         localPlayerKillController.KillButton.SetActive(false);
     }

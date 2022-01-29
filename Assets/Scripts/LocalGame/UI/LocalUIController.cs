@@ -9,6 +9,7 @@ public class LocalUIController : MonoBehaviour
     [SerializeField] GameObject timerPanel;
     [SerializeField] GameObject statePanel;
     [SerializeField] GameObject imposterPanel;
+    [SerializeField] GameObject crewmatePanel;
     [SerializeField] GameObject ImposterWinPanel;
     [SerializeField] GameObject CrewmateWinPanel;
 
@@ -49,6 +50,7 @@ public class LocalUIController : MonoBehaviour
     {
         statePanel.SetActive(false);
         imposterPanel.SetActive(true);
+        crewmatePanel.SetActive(true);
         timerPanel.SetActive(true);
     }
 
@@ -58,6 +60,7 @@ public class LocalUIController : MonoBehaviour
         weaponsPanel.SetActive(false);
         statePanel.SetActive(false);
         imposterPanel.SetActive(false);
+        crewmatePanel.SetActive(false);
     }
 
     public void ImposterWon()

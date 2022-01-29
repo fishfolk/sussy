@@ -11,6 +11,7 @@ TagManager:
   - Trigger
   - Coin
   - CallMeeting
+  - Mine
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - 
   - Players
   - Walls
-  - 
+  - Mine
   - 
   - 
   - 

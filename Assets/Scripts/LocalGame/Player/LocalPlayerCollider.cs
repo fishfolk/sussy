@@ -8,13 +8,11 @@ public class LocalPlayerCollider : MonoBehaviour
     LocalPlayerMovement playerMovement;
     LocalPlayerKillController localPlayerKillController;
     LocalPlayerController localPlayerController;
-    //PlayerState playerState;
 
     int playersCount = 0;
 
     void Awake()
     {
-        //playerState = FindObjectOfType<PlayerState>();
         playerMovement = GetComponent<LocalPlayerMovement>();
         localPlayerController = GetComponent<LocalPlayerController>();
         localPlayerKillController = GetComponent<LocalPlayerKillController>();
@@ -25,11 +23,18 @@ public class LocalPlayerCollider : MonoBehaviour
     {
         //When the Imposter Enters a crewmember Trigger
         if (localPlayerController.isImposter)
+        {
             if (other.gameObject.tag == "Crewmate")
             {
                 localPlayerKillController.EnableKilling(other.GetComponentInParent<LocalPlayerController>());
                 playersCount++;
             }
+            if (other.gameObject.tag == "Mine")
+            {
+                Destroy(other.gameObject);
+                localPlayerController.Stun();
+            }
+        }
 
         if (other.gameObject.tag == "Coin")
         {

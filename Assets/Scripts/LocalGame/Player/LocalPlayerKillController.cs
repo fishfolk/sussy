@@ -7,6 +7,8 @@ public class LocalPlayerKillController : MonoBehaviour
 {
     //The UI button with the Overlay color
     [SerializeField] public GameObject KillButton;
+    [SerializeField] Camera cam;
+    [SerializeField] LayerMask imposterMask;
     Image KillButtonImage;
 
     float KillCoolDown = 5;
@@ -22,6 +24,12 @@ public class LocalPlayerKillController : MonoBehaviour
         idKillList = new List<LocalPlayerController>();
 
         KillButtonImage.fillAmount = 1;
+    }
+
+    public void StartImposter()
+    {
+        KillButton.SetActive(true);
+        HideMineLayer();
     }
 
     IEnumerator ResetKill()
@@ -94,6 +102,11 @@ public class LocalPlayerKillController : MonoBehaviour
             idKillList.Remove(ID);
 
         KillButton.GetComponent<Animator>().SetBool("Kill", false);
+    }
+
+    public void HideMineLayer()
+    {
+        cam.cullingMask = imposterMask;
     }
 
     #endregion

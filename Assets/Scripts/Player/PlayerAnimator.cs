@@ -37,4 +37,9 @@ public class PlayerAnimator : MonoBehaviour
         else
             animator?.SetTrigger("Dead2");
     }
+
+    public void ReleaseStun()
+    {
+        animator?.SetTrigger("Stun");
+    }
 }

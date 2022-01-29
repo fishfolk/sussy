@@ -658,6 +658,7 @@ GameObject:
   - component: {fileID: 571541667467973377}
   - component: {fileID: 346383566078121874}
   - component: {fileID: 2331333310319583287}
+  - component: {fileID: 7173728911602929016}
   m_Layer: 8
   m_Name: PlayerLocalCharacter
   m_TagString: Untagged
@@ -701,6 +702,7 @@ MonoBehaviour:
   playerName: {fileID: 1433777454783713081}
   isImposter: 0
   weaponsCountText: {fileID: 0}
+  statePanelController: {fileID: 0}
 --- !u!114 &1327269482843315612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,6 +729,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KillButton: {fileID: 0}
+  cam: {fileID: 0}
+  imposterMask:
+    serializedVersion: 2
+    m_Bits: 823
 --- !u!114 &1160512921003965260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,3 +822,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee22f930a2717342bcecc9846804968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7173728911602929016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8075718318282160577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8f251ac0acda64897fd6c243de8d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineButton: {fileID: 0}
+  MineObject: {fileID: 4453952513583904166, guid: f790ad4fb27769846825b8c54cf46666,
+    type: 3}

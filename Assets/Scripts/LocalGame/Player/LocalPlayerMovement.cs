@@ -109,6 +109,7 @@ public class LocalPlayerMovement : MonoBehaviour
     public void StopPlayer()
     {
         CanMove = false;
+        FixedUpdateMovement(0, 0);
     }
     public void KillPlayer()
     {
