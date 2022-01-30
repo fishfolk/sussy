@@ -265,13 +265,20 @@ public class ConnectionHostManager : MonoBehaviour
                 }
             }
             FindObjectOfType<PlayersManager>().ActivatePlayers();
-            KillTask(KillID);
+            currentKillID = KillID;
             gameConnectionManager.ShowMeetingResult(KillID);
+
+            Invoke("KillTaskMeeting", 4);
         }
         else
             gameConnectionManager.ShowMeetingResult("");
 
-        Invoke("EndMeeting", 3);
+        Invoke("EndMeeting", 5);
+    }
+    string currentKillID;
+    void KillTaskMeeting()
+    {
+        KillTask(currentKillID);
     }
 
     void EndMeeting()

@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 223066518191266087}
   - component: {fileID: 15870127124716980}
   m_Layer: 8
-  m_Name: PlayerCharacter
+  m_Name: PlayerImposterCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41638affd2f9e24281b88a1aa987eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 6
 --- !u!50 &223066518191266087
 Rigidbody2D:
   serializedVersion: 4

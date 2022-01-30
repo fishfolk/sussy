@@ -60,6 +60,9 @@ public class MeetingsManager : MonoBehaviour
 
     public void EndMeeting()
     {
+        meetingsPanel.SetActive(false);
+        meetingResultPanel.SetActive(false);
+
         callMeetingButton.GetComponent<Button>().interactable = true;
         StopAllCoroutines();
 
@@ -68,8 +71,6 @@ public class MeetingsManager : MonoBehaviour
             Destroy(v.gameObject);
         }
         playersManager.ActivatePlayers();
-        meetingsPanel.SetActive(false);
-        meetingResultPanel.SetActive(false);
     }
 
     IEnumerator CountDown()
@@ -124,6 +125,9 @@ public class MeetingsManager : MonoBehaviour
     {
         meetingsPanel.SetActive(false);
         meetingResultPanel.SetActive(true);
-        meetingResultPanelName.text = FindObjectOfType<PlayersManager>().GetPlayerName(KillID);
+        if (KillID != "")
+            meetingResultPanelName.text = FindObjectOfType<PlayersManager>().GetPlayerName(KillID);
+        else
+            meetingResultPanelName.text = "No One";
     }
 }

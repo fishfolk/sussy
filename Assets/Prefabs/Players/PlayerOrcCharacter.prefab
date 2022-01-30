@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7989185063060674389}
   - component: {fileID: 7926147767570486214}
   m_Layer: 8
-  m_Name: PlayerCharacter
+  m_Name: PlayerOrcCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41638affd2f9e24281b88a1aa987eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 6
 --- !u!50 &7989185063060674389
 Rigidbody2D:
   serializedVersion: 4
