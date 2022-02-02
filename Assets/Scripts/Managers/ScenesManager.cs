@@ -27,6 +27,11 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene(ScenesDataStore.GetMainMenuSceneName());
     }
+
+    public void GoToFreeRoamScene()
+    {
+        SceneManager.LoadScene(ScenesDataStore.GetFreeRoamSceneName());
+    }
 }
 
 public class ScenesDataStore
@@ -40,5 +45,7 @@ public class ScenesDataStore
     private static string MainMenuSceneName = "MainMenuScene";
     public static string GetMainMenuSceneName() { return MainMenuSceneName; }
 
+    private static string FreeRoamSceneName = "FreeRoamScene";
+    public static string GetFreeRoamSceneName() { return FreeRoamSceneName; }
 
 }

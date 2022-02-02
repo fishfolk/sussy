@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OnlineScene.unity
     guid: ecc10709fd0800444ac938d86f3cc1db
+  - enabled: 1
+    path: Assets/Scenes/FreeRoamScene.unity
+    guid: a3c6e1bef53d7e24686e237f39676e7d
   m_configObjects: {}

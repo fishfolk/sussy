@@ -12,7 +12,7 @@ public class LocalPlayerMovement : MonoBehaviour
     float currentSpeed = 0;
 
     ControlsManager controlsManager;
-    bool CanMove = false;
+    public bool CanMove = false;
     bool isMoving;
     SpriteRenderer playerSpriteRenderer;
     Rigidbody2D rigidBody2D;
