@@ -32,6 +32,11 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene(ScenesDataStore.GetFreeRoamSceneName());
     }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
+    }
 }
 
 public class ScenesDataStore
