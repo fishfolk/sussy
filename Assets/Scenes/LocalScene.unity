@@ -5853,7 +5853,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6590,7 +6590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7056d1d9464ddd43bc368caa5ba55cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectTime: 30
+  collectTime: 60
   killingTime: 60
   timerText: {fileID: 932903598}
 --- !u!1 &666191464
@@ -7715,7 +7715,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11230,7 +11230,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12002,7 +12002,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

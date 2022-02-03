@@ -22,6 +22,7 @@ public class LocalPlayerController : MonoBehaviour
     LocalPlayerInventory localPlayerInventory;
 
     public bool isImposter = false;
+    public bool isDead = false;
 
     int currentWeapons = 0;
     public int GetCurrentWeapons() { return currentWeapons; }
@@ -57,14 +58,15 @@ public class LocalPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.ActionKey)))
-        {
-            if (isImposter)
-                localPlayerKillController.Kill();
+        if (!isDead)
+            if (Input.GetKey(controlsManager.GetKey(id, ControlKeys.ActionKey)))
+            {
+                if (isImposter)
+                    localPlayerKillController.Kill();
 
-            if (!isImposter)
-                localPlayerInventory.PlantMine();
-        }
+                if (!isImposter)
+                    localPlayerInventory.PlantMine();
+            }
     }
 
     public void Kill()
@@ -72,6 +74,8 @@ public class LocalPlayerController : MonoBehaviour
         foreach (var v in localPlayerMovement.gameObject.GetComponentsInChildren<BoxCollider2D>())
             if (v.gameObject.tag == "Crewmate")
                 v.gameObject.tag = "Trigger";
+
+        isDead = true;
 
         localPlayerMovement.StopPlayer();
         GetComponentInChildren<PlayerAnimator>().PlayerDead();
