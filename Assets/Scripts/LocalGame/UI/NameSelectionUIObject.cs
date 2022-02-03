@@ -10,7 +10,7 @@ public class NameSelectionUIObject : MonoBehaviour
 
     private void OnEnable()
     {
-        inputField.text = "Player " + objectID + "...";
+        inputField.text = "Player " + (objectID + 1) + "...";
     }
 
     public void SelectName()

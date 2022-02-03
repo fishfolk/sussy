@@ -12,17 +12,32 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    public void ReloadScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
 
     public void GoToOnlineScene()
     {
         SceneManager.LoadScene(ScenesDataStore.GetOnlineSceneName());
     }
 
-    public void GoToLocalScene()
+    public void GoToLocalScene(int playerCount)
     {
-        SceneManager.LoadScene(ScenesDataStore.GetLocalSceneName());
+        switch (playerCount)
+        {
+            case 2:
+                SceneManager.LoadScene(ScenesDataStore.GetLocal2SceneName());
+                break;
+            case 3:
+                SceneManager.LoadScene(ScenesDataStore.GetLocal3SceneName());
+                break;
+            case 4:
+                SceneManager.LoadScene(ScenesDataStore.GetLocal4SceneName());
+                break;
+        }
     }
-
     public void GoToMainMenuScene()
     {
         SceneManager.LoadScene(ScenesDataStore.GetMainMenuSceneName());
@@ -44,8 +59,12 @@ public class ScenesDataStore
     private static string OnlineSceneName = "OnlineScene";
     public static string GetOnlineSceneName() { return OnlineSceneName; }
 
-    private static string LocalSceneName = "LocalScene";
-    public static string GetLocalSceneName() { return LocalSceneName; }
+    private static string Local4SceneName = "Local4Scene";
+    public static string GetLocal4SceneName() { return Local4SceneName; }
+    private static string Local3SceneName = "Local3Scene";
+    public static string GetLocal3SceneName() { return Local3SceneName; }
+    private static string Local2SceneName = "Local2Scene";
+    public static string GetLocal2SceneName() { return Local2SceneName; }
 
     private static string MainMenuSceneName = "MainMenuScene";
     public static string GetMainMenuSceneName() { return MainMenuSceneName; }

@@ -11,7 +11,7 @@ public class LocalPlayerInventory : MonoBehaviour
 
     bool canPlantMine = false;
 
-    float mineCoolDown = 20;
+    [SerializeField] float mineCoolDown = 10;
 
     void Awake()
     {

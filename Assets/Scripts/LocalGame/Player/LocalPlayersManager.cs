@@ -5,7 +5,7 @@ using UnityEngine;
 public class LocalPlayersManager : MonoBehaviour
 {
     public static LocalPlayersManager Instance;
-    int playersKilled = 3;
+    [SerializeField] int playersNumber = 4;
 
     private void Awake()
     {
@@ -65,9 +65,9 @@ public class LocalPlayersManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        playersKilled--;
+        playersNumber--;
 
-        if (playersKilled == 0)
+        if (playersNumber == 1)
             GameManager.Instance.EndGame(true);
     }
 

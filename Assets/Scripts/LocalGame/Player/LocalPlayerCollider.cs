@@ -13,9 +13,9 @@ public class LocalPlayerCollider : MonoBehaviour
 
     void Awake()
     {
-        playerMovement = GetComponent<LocalPlayerMovement>();
-        localPlayerController = GetComponent<LocalPlayerController>();
-        localPlayerKillController = GetComponent<LocalPlayerKillController>();
+        playerMovement = GetComponentInParent<LocalPlayerMovement>();
+        localPlayerController = GetComponentInParent<LocalPlayerController>();
+        localPlayerKillController = GetComponentInParent<LocalPlayerKillController>();
     }
 
     #region Triggers
@@ -32,6 +32,7 @@ public class LocalPlayerCollider : MonoBehaviour
             if (other.gameObject.tag == "Mine")
             {
                 Destroy(other.gameObject);
+                localPlayerKillController.DisableKilling(other.GetComponentInParent<LocalPlayerController>());
                 localPlayerController.Stun();
             }
         }
@@ -51,6 +52,8 @@ public class LocalPlayerCollider : MonoBehaviour
             if (other.gameObject.tag == "Crewmate")
             {
                 playersCount--;
+
+                if (playersCount < 0) playersCount = 0;
 
                 if (playersCount == 0)
                 {

@@ -14,7 +14,7 @@ public class StatePanelController : MonoBehaviour
     public void SetImposter()
     {
         panelImage.color = imposterColor;
-        panelText.text = "Imposter";
+        panelText.text = "Pirate";
     }
 
     public void SetCrewmate()

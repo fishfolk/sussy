@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8052677038440458160}
   - component: {fileID: 2596163492052052113}
+  - component: {fileID: 5603145143102296608}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Crewmate
@@ -159,6 +160,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9996291, y: 1.9312651}
   m_EdgeRadius: 0
+--- !u!114 &5603145143102296608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165552037046853136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee22f930a2717342bcecc9846804968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3502149185940376371
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +670,6 @@ GameObject:
   - component: {fileID: -5709917958397069619}
   - component: {fileID: 571541667467973377}
   - component: {fileID: 346383566078121874}
-  - component: {fileID: 2331333310319583287}
   - component: {fileID: 7173728911602929016}
   m_Layer: 8
   m_Name: PlayerLocalCharacter
@@ -701,8 +713,10 @@ MonoBehaviour:
   id: 0
   playerName: {fileID: 1433777454783713081}
   isImposter: 0
+  isDead: 0
   weaponsCountText: {fileID: 0}
   statePanelController: {fileID: 0}
+  stunDuration: 5
 --- !u!114 &1327269482843315612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,18 +825,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67108774, y: 0.8680575}
   m_EdgeRadius: 0
---- !u!114 &2331333310319583287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8075718318282160577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee22f930a2717342bcecc9846804968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7173728911602929016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,3 +840,4 @@ MonoBehaviour:
   MineButton: {fileID: 0}
   MineObject: {fileID: 4453952513583904166, guid: f790ad4fb27769846825b8c54cf46666,
     type: 3}
+  mineCoolDown: 10

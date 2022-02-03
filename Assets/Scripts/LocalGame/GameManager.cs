@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int killingTime = 60;
 
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] int coinsCount = 10;
 
     private void Awake()
     {
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        FindObjectOfType<ScenesManager>().GoToLocalScene();
+        FindObjectOfType<ScenesManager>().ReloadScene();
     }
 
     IEnumerator StartCollectingTimer()
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnCoins()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < coinsCount; i++)
             coinsSpawnerManager.SpawnCoin();
     }
 

@@ -29,6 +29,7 @@ public class LocalPlayerController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI weaponsCountText;
     [SerializeField] StatePanelController statePanelController;
+    [SerializeField] float stunDuration = 5;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class LocalPlayerController : MonoBehaviour
         localPlayerInventory = GetComponent<LocalPlayerInventory>();
 
         localPlayerMovement.SetID(id);
+
         weaponsCountText.text = currentWeapons.ToString();
     }
 
@@ -84,17 +86,17 @@ public class LocalPlayerController : MonoBehaviour
     public void Stun()
     {
         localPlayerMovement.StopPlayer();
-        isImposter = false;
+        isDead = true;
 
         GetComponentInChildren<PlayerAnimator>().PlayerDead();
         ExplosionsSpawner.Instance.Spawn(ExplosionsType.big, transform.position);
-        Invoke("ReleaseStun", 5);
+        Invoke("ReleaseStun", stunDuration);
     }
 
     public void ReleaseStun()
     {
         localPlayerMovement.MovePlayer();
-        isImposter = true;
+        isDead = false;
 
         GetComponentInChildren<PlayerAnimator>().ReleaseStun();
     }
